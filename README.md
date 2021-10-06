@@ -1,26 +1,31 @@
 # Resturant-Search-Chatbot-With-RASA
-(Note: Removed NLU and core training files from 'model folder', as the file size exceeded while uploading)
 
-## Installation process
-Download and install anaconda: https://docs.anaconda.com/anaconda/install/ 
-RASA tutorial : https://rasa.com/docs/rasa/installation/
-Rasa Training data: https://rasa.com/docs/rasa/nlu-training-data
+## Intoduction
+A chatbot is a robot with an Artificial Intelligence (AI) which can have a conversation with a human interlocutor. It can be used in many different situations and have various roles like answering customer queries, automating repetitive tasks, and more. A chatbot can also handle queries pertaining to a particular domain or type of task. For example, a ‘weather bot’ can only predict weather. It cannot book a table at a restaurant or set up an alarm. Similarly, a restaurant discovery bot can only help you find restaurants in several cities; it might not be able to answer general questions such as "Who is the prime minister of India?".
 
-## versions used for this Chatbot project(more version information details are listed at bottom of this file)
-rasa==2.8.0
-spacy==3.1.0
+With the advancements in machine learning (ML), deep learning (DL) and natural language processing (NLP), traditional conversational chatbots have now become advanced and are called as contextual chatbots. A contextual chatbot understands the context of the conversation by observing the pattern of communication between itself and the user. It not only keeps track of the current state of the conversation, but also of what has been said before. These advanced chatbots remember what a user asked or said previously, and deliver a more relevant answer according to that information.
+
+Instead of relying on a bunch of if/else statements, a contextual chatbot uses an ML model trained on example conversations to decide what to do next.
+Conversational system has primarily two components:
+1. Natural Language Understanding, or NLU
+2. Dialogue Management System
+which carries out the overall conversation
+
+The first layer of a conversational system, Natural Language Understanding (NLU), interprets the free text provided by the user. It basically takes an unstructured text phrase or sentence, understands what the user probably intends to say, extracts entities from the text phrase or sentence, and converts it into structured data.
+
+Rasa NLU and Rasa Core (APIs) are two open-source libraries for building conversational agents. Rasa NLU is the tool used for intent classification and entity extraction.
 
 _________________________________________________________________________________________________________________________________________________
 
 
-### Problem Statement:
+## Problem Statement:
 
-An Indian startup named 'Foodie' wants to build a conversational bot (chatbot) which can help users discover restaurants across several Indian cities. You have been hired as the lead data scientist for creating this product.
+An Indian startup named 'Foodie'(Name is just for reference) wants to build a conversational bot (chatbot) which can help users discover restaurants across several Indian cities.
 
 The main purpose of the bot is to help users discover restaurants quickly and efficiently and to provide a good restaurant discovery experience. The project brief provided to you is as follows.
 
 
-#### Inputs:
+### Inputs:
 
 1. Foodie works only in Tier-1 and Tier-2 cities,while for tier-3 cities, it should reply back with something like "We do not operate in that area yet".The main purpose of the bot is to help users discover restaurants quickly and efficiently and to provide a good restaurant discovery experience.
 
@@ -31,16 +36,15 @@ The main purpose of the bot is to help users discover restaurants quickly and ef
 Finally, the bot should ask the user whether he/she wants the details of the top 10 restaurants on email. If the user replies 'yes', the bot should ask for user’s email id and then send it over email with the list of top 5 restaurants in a sorted order (descending) of the average Zomato user rating (on a scale of 1-5, 5 being the highest). Else, just reply with a 'goodbye' message. 
 
 
-### Goals of this Project
+## Goals of this Project
 For chatbot ‘Foodie’:
-1. NLU training
-2. Build actions for the bot
-3. Creating more stories
-4. Deployment(optional)
+1. NLU training: used rasa train to create more training examples for entities and intents.
+2. Build actions for the bot: Actions to extract the features such as the average price for two people and restaurant’s user rating, Also for sending emails from Python.
+3. Creating more stories: Rasa Core’s dialogue management system. Rasa Core uses a variant of Recurrent Neural Networks (RNNs), which are 'sequence models', called LSTMs (Long Short-Term Memory), to learn dialogue flow.
 
 
-### The bot will function as follows:
-______________________________________
+## The bot will function as follows:
+
     User:  hi
     Bot: hey there! How may i help you
     User:  Can you fine me a restaurant
@@ -71,25 +75,52 @@ ______________________________________
     User: Your input ->  testmail.nlp2021@gmail.com
     Bot:Bye-bye
 
+## Prerequisites
+Download and install anaconda: https://docs.anaconda.com/anaconda/install/ <br />
+RASA tutorial : https://rasa.com/docs/rasa/installation/<br />
+Rasa Training data: https://rasa.com/docs/rasa/nlu-training-data
+
+### Versions used for this Chatbot project(more version information details are listed at bottom of this file)
+rasa==2.8.0<br />
+spacy==3.1.0
+
+## To run the files:
+open anaconda prompt and activate rasa
+The rasa init command creates all the files that a Rasa project needs and trains a simple bot on some sample data.
+
+![image](https://user-images.githubusercontent.com/79132138/136177460-71060838-33ab-415d-bd00-a38d39670c90.png)
+
+After completing the goals of the project, refer below commands:
+
+- rasa train nlu # to train data in data/nlu.md file.
+- rasa shell nlu # to test nlu data.
+Check the confidence
+- rasa train core  # to train the rasa core model.
+- rasa run actions #To fetch results from zomato api, we run actions.
+- rasa shell  # for testing few cases for rasa core model.
+- rasa interactive. #Create stories in interactive mode and export them, which will be available in data/stories.md (or) we can manually add stories.
+
+
+
 ## Output folder
 
-# Image shows the bot result, the communication b/w user and bot
-1.Bot result1.png
-1.Bot result2.JPG
-
-# Image shows the top rated restaurants email, with the Location, budget and cusine selected by user
-2.mail.JPG
+### Image shows the bot result, the communication b/w user and bot
+![1 Bot result2](https://user-images.githubusercontent.com/79132138/136154760-888fb507-4d08-48b7-9884-415c8003df39.JPG)
 
 
+### Image shows the top rated restaurants email, with the Location, budget and cusine selected by user
+![2 mail](https://user-images.githubusercontent.com/79132138/136154777-18ea5291-e468-47d7-86d5-c14c17fd8674.JPG)
+
+<br />
+<br />
+<br />
+<br />
 
 
 
-
-
-
-
-## Versions used for Chatbot project(for reference only)
 _________________________________________________________________________________________________________________________________________________
+## Versions used for Chatbot project(for reference only)
+
 
 absl-py==0.13.0
 aio-pika==6.8.0
@@ -262,3 +293,11 @@ wincertstore==0.2
 wrapt==1.12.1
 yarl==1.6.3
 zipp==3.5.0
+<br />
+<br />
+<br />
+<br />
+
+Now we can deploy the chatbot through Slack or any other channel.
+
+## Thank you for reaching out to me on Github😃
