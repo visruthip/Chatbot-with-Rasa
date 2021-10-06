@@ -1,0 +1,162 @@
+
+version: "2.0"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Bangalore
+  - slot_was_set:
+    - location: Bangalore
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_avgpricerange
+  - intent: restaurant_search
+    entities:
+    - pricerange: 300 to 700
+  - slot_was_set:
+    - pricerange: 300 to 700
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Bangalore
+  - action: utter_ask_decisiontop
+  - intent: accept
+  - action: utter_ask_emailid
+  - intent: mail
+    entities:
+    - emailid: testmail.nlp2021@gmail.com
+  - slot_was_set:
+    - emailid: testmail.nlp2021@gmail.com
+  - action: action_send_mail
+  - slot_was_set:
+    - emailid: testmail.nlp2021@gmail.com
+  - action: utter_goodbye
+
+version: "2.0"
+stories:
+- story: interactive_story_2
+  steps:
+  - slot_was_set:
+    - location: Rishikesh
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - pricerange: Less than 300
+  - slot_was_set:
+    - location: Rishikesh
+  - slot_was_set:
+    - location: Allahabad
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - pricerange: More than 700
+  - slot_was_set:
+    - location: Allahabad
+  - intent: restaurant_search
+    entities:
+    - location: Hyderabad
+  - slot_was_set:
+    - location: Hyderabad
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: North Indian
+  - slot_was_set:
+    - cuisine: North Indian
+  - action: utter_ask_avgpricerange
+  - intent: restaurant_search
+    entities:
+    - pricerange: More than 700
+  - slot_was_set:
+    - pricerange: More than 700
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Hyderabad
+  - action: utter_ask_decisiontop
+  - intent: accept
+  - action: utter_ask_emailid
+  - intent: mail
+    entities:
+    - emailid: testmail.nlp2021@gmail.com
+  - slot_was_set:
+    - emailid: testmail.nlp2021@gmail.com
+  - action: action_send_mail
+  - slot_was_set:
+    - emailid: testmail.nlp2021@gmail.com
+  - action: utter_goodbye
+
+version: "2.0"
+stories:
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: Mumbai
+  - slot_was_set:
+    - location: Mumbai
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: American
+  - slot_was_set:
+    - cuisine: American
+  - action: utter_ask_avgpricerange
+  - intent: restaurant_search
+    entities:
+    - pricerange: More than 700
+  - slot_was_set:
+    - pricerange: More than 700
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: Mumbai
+  - action: utter_ask_decisiontop
+  - intent: accept
+  - action: utter_ask_emailid
+  - intent: mail
+    entities:
+    - emailid: testmail.nlp2021@gmail.com
+  - slot_was_set:
+    - emailid: testmail.nlp2021@gmail.com
+  - action: action_send_mail
+  - slot_was_set:
+    - emailid: testmail.nlp2021@gmail.com
+  - action: utter_goodbye
+
+version: "2.0"
+stories:
+- story: interactive_story_4
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+    - location: chandigarh
+  - slot_was_set:
+    - cuisine: chinese
+  - slot_was_set:
+    - location: chandigarh
+  - action: utter_ask_avgpricerange
+  - intent: restaurant_search
+    entities:
+    - pricerange: Less than 300
+  - slot_was_set:
+    - pricerange: Less than 300
+  - action: action_search_restaurants
+  - slot_was_set:
+    - location: chandigarh
+  - action: utter_ask_decisiontop
+  - intent: reject
+  - action: utter_goodbye
